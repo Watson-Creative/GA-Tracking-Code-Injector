@@ -72,4 +72,3 @@ function ga_inject_settings_page() {
 
 
 <?php } ?>
-?>
