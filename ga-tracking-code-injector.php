@@ -22,8 +22,8 @@ function printGAcode(){
 
 	// echo '</div>';
 }
-
-add_action('wp_head', 'printGAcode');
+add_action('wp_header', 'printGAcode');
+// add_action('wp_head', 'printGAcode');
 
 
 function register_ga_inject_settings() { // whitelist options
