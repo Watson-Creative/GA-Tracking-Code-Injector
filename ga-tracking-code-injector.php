@@ -19,15 +19,10 @@ if ( is_admin() ){ // admin actions
 
 
 function printGAcode(){
-	//echo '<h1 id="testBlock">' . get_option('ga_inject_code') . '</h1>'; //debug message
-	// echo '<div id="PANTHEONVARDUMP">';
-	// $ENV = $_ENV['PANTHEON_ENVIRONMENT'];
-	// if( $ENV == 'live') {
+	if( $_ENV['PANTHEON_ENVIRONMENT'] == 'live') {
 		echo '<script async src="https://www.googletagmanager.com/gtag/js?id=' . get_option("ga_inject_code") . '"></script>
 		<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "' . get_option("ga_inject_code") . '");</script>';
-	// }
-
-	// echo '</div>';
+	}
 }
 // add_action('wp_headers', 'printGAcode');
 add_action('wp_head', 'printGAcode');
