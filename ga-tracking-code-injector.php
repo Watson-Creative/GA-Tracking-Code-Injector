@@ -4,7 +4,7 @@
  Plugin URI: https://github.com/Watson-Creative/GA-Tracking-Code-Injector
  GitHub Plugin URI: https://github.com/Watson-Creative/GA-Tracking-Code-Injector
  description: Inject GA code in appropriate places site-wide - use custom menu to set tracking code ID
- Version: 0.0.2
+ Version: 1.0.0
  Author: Alex Tryon
  Author URI: http://www.alextryonpdx.com
  License: GPL2
@@ -56,6 +56,7 @@ function ga_inject_settings_page() {
 ?>
 
 <div class="wrap">
+	<img id="watson-branding" src="<?php echo plugins_url('img/WC_Brand_Signature.png', __FILE__ ); ?>" style="max-width:400px;">
 	<h1>Watson Creative Google Analytics Code Injector</h1>
 	<form method="post" action="options.php"> 
 		<?php 
