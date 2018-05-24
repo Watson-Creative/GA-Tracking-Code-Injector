@@ -4,7 +4,7 @@
  Plugin URI: https://github.com/Watson-Creative/GA-Tracking-Code-Injector
  GitHub Plugin URI: https://github.com/Watson-Creative/GA-Tracking-Code-Injector
  description: Inject GA code in appropriate places site-wide - use custom menu to set tracking code ID
- Version: 1.0.0
+ Version: 1.0.1
  Author: Alex Tryon
  Author URI: http://www.alextryonpdx.com
  License: GPL2
@@ -28,11 +28,9 @@ function printGAcode(){
 add_action('wp_head', 'printGAcode');
 
 
-
-
 register_activation_hook(__FILE__,'create_default_values');
 function create_default_values() {
-if ( get_option( 'ga_inject_code' ) == false ) { 
+	if ( get_option( 'ga_inject_code' ) == false ) { 
 		add_option("ga_inject_code", 'UA-XXXXX-X'); 
 	}
 }
