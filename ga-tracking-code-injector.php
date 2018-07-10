@@ -4,7 +4,7 @@
  Plugin URI: https://github.com/Watson-Creative/GA-Tracking-Code-Injector
  GitHub Plugin URI: https://github.com/Watson-Creative/GA-Tracking-Code-Injector
  description: Add tags for Google Analytics and Google Tag Manager in appropriate locations globally from WP Admin menu. Code is only printed in a live Pantheon environment to prevent skewing data with traffic on the development or testing environments.
- Version: 2.0.0
+ Version: 2.0.1
  Author: Alex Tryon
  Author URI: http://www.alextryonpdx.com
  License: GPL2
@@ -46,29 +46,30 @@ add_action('wp_head', 'printGAcode_head');
 
 
 // filter hack via https://www.affectivia.com/blog/placing-the-google-tag-manager-in-wordpress-after-the-body-tag/
-
-add_filter( 'body_class', 'gtm_add', 10000 );
+if( $_ENV['PANTHEON_ENVIRONMENT'] === 'live') {
+	add_filter( 'body_class', 'gtm_add', 10000 );
+}
 
 function gtm_add( $classes ) {
 
-	if( $_ENV['PANTHEON_ENVIRONMENT'] == 'live') {
+	
 
-		$GTM_CODE = get_option("gtm_inject_code");
-		
-		if($GTM_CODE != 'GTM-XXXX' && $GTM_CODE != ''):
+	$GTM_CODE = get_option("gtm_inject_code");
+	
+	if($GTM_CODE != 'GTM-XXXX' && $GTM_CODE != ''):
 
-			$PRINT_CODE = '<!-- Google Tag Manager (noscript) -->
-			<noscript><iframe src="https://www.googletagmanager.com/ns.html?id="' . $GTM_CODE . 'height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-			<!-- End Google Tag Manager (noscript) -->';
+		$PRINT_CODE = '<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id="' . $GTM_CODE . 'height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->';
 
-			$classes[] = '">' . $PRINT_CODE . '<br style="display:none';      
-			return $classes;
+		$classes[] = '">' . $PRINT_CODE . '<br style="display:none';      
+		return $classes;
 
-		else :
-			return $classes;
-		endif;
-	}
+	else :
+		return $classes;
+	endif;
 }
+
 
 
 register_activation_hook(__FILE__,'create_default_values');
