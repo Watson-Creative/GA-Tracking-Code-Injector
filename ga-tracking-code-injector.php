@@ -81,7 +81,7 @@ function gtm_add( $classes ) {
 	if($GTM_CODE != 'GTM-XXXX' && $GTM_CODE != ''):
 
 		$PRINT_CODE = '<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id="' . $GTM_CODE . 'height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id="' . $GTM_CODE . '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->';
 
 		$classes[] = '">' . $PRINT_CODE . '<br style="display:none';      
