@@ -4,7 +4,7 @@
  Plugin URI: https://github.com/Watson-Creative/GA-Tracking-Code-Injector
  GitHub Plugin URI: https://github.com/Watson-Creative/GA-Tracking-Code-Injector
  description: Add tags for Google Analytics, Google Tag Manager and Facebook Pixel(since 2.1.0) code in appropriate locations globally from WP Admin menu. Code is only printed in a live Pantheon environment to prevent skewing data with traffic on the development or testing environments.
- Version: 2.1.0
+ Version: 2.1.1
  Author: Alex Tryon
  Author URI: http://www.alextryonpdx.com
  License: GPL2
