@@ -4,7 +4,7 @@ Plugin Name: GA Tracking Code Injector (WC)
 Plugin URI: https://github.com/Watson-Creative/GA-Tracking-Code-Injector
 GitHub Plugin URI: https://github.com/Watson-Creative/GA-Tracking-Code-Injector
 description: Add tags for Google Analytics, Google Tag Manager and Facebook Pixel(since 2.1.0) code in appropriate locations globally from WP Admin menu. Code is only printed in a live Pantheon environment to prevent skewing data with traffic on the development or testing environments.
-Version: 2.1.1
+Version: 2.2
 Author: Alex Tryon
 Author URI: http://www.alextryonpdx.com
 License: GPL2
@@ -23,41 +23,41 @@ function printGAcode_head() {
 		$GA_CODE = get_option("ga_inject_code");
 		if ($GA_CODE != 'UA-XXXXX-X' && $GA_CODE != ''):
 			echo '<script async src="https://www.googletagmanager.com/gtag/js?id=' . get_option("ga_inject_code") . '"></script>
-					<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "' . $GA_CODE . '");</script>';
+						<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "' . $GA_CODE . '");</script>';
 		endif;
 
 		// Google Tag Manager Header Code
 		$GTM_CODE = get_option("gtm_inject_code");
 		if ($GTM_CODE != 'GTM-XXXX' && $GTM_CODE != ''):
 			echo "<!-- Google Tag Manager -->
-					<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-					'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-					})(window,document,'script','dataLayer','" . $GTM_CODE . "');</script>
-					<!-- End Google Tag Manager -->";
+						<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+						new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+						j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+						'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+						})(window,document,'script','dataLayer','" . $GTM_CODE . "');</script>
+						<!-- End Google Tag Manager -->";
 		endif;
 
 		// Google Tag Manager Header Code
 		$FB_PIXEL_CODE = get_option("fb_pixel_code");
 		if ($FB_PIXEL_CODE != '###############' && $FB_PIXEL_CODE != ''):
 			echo '<!-- Facebook Pixel Code -->
-					<script>
-					!function(f,b,e,v,n,t,s)
-					{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-					n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-					if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=\'2.0\';
-					n.queue=[];t=b.createElement(e);t.async=!0;
-					t.src=v;s=b.getElementsByTagName(e)[0];
-					s.parentNode.insertBefore(t,s)}(window, document,\'script\',
-					\'https://connect.facebook.net/en_US/fbevents.js\');
-					fbq(\'init\', \'' . $FB_PIXEL_CODE . '\');
-					fbq(\'track\', \'PageView\');
-					</script>
-					<noscript><img height="1" width="1" style="display:none"
-					src="https://www.facebook.com/tr?id=' . $FB_PIXEL_CODE . '&ev=PageView&noscript=1"
-					/></noscript>
-					<!-- End Facebook Pixel Code -->';
+						<script>
+						!function(f,b,e,v,n,t,s)
+						{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+						n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+						if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version=\'2.0\';
+						n.queue=[];t=b.createElement(e);t.async=!0;
+						t.src=v;s=b.getElementsByTagName(e)[0];
+						s.parentNode.insertBefore(t,s)}(window, document,\'script\',
+						\'https://connect.facebook.net/en_US/fbevents.js\');
+						fbq(\'init\', \'' . $FB_PIXEL_CODE . '\');
+						fbq(\'track\', \'PageView\');
+						</script>
+						<noscript><img height="1" width="1" style="display:none"
+						src="https://www.facebook.com/tr?id=' . $FB_PIXEL_CODE . '&ev=PageView&noscript=1"
+						/></noscript>
+						<!-- End Facebook Pixel Code -->';
 		endif;
 	}
 }
@@ -76,8 +76,8 @@ function gtm_add($classes) {
 	if ($GTM_CODE != 'GTM-XXXX' && $GTM_CODE != ''):
 
 		$PRINT_CODE = '<!-- Google Tag Manager (noscript) -->
-			<noscript><iframe src="https://www.googletagmanager.com/ns.html?id="' . $GTM_CODE . '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-			<!-- End Google Tag Manager (noscript) -->';
+				<noscript><iframe src="https://www.googletagmanager.com/ns.html?id="' . $GTM_CODE . '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+				<!-- End Google Tag Manager (noscript) -->';
 
 		$classes[] = '">' . $PRINT_CODE . '<br style="display:none';
 		return $classes;
